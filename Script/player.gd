@@ -3,12 +3,15 @@ extends CharacterBody3D
 
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
+const PUSH_FORCE = 5.0
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
+var Ball = preload("res://Object/ball.tscn")
 
+var can_throw = true
 var sensitivity = 0.003
-@onready var camera = $Camera3D
+@onready var camera = $Neck/Camera3D
 
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -44,3 +47,37 @@ func _physics_process(delta):
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 
 	move_and_slide()
+	
+	# Push RigidBody3D objects
+	for i in get_slide_collision_count():
+		var collision = get_slide_collision(i)
+		var collider = collision.get_collider()
+		
+		if collider is RigidBody3D:
+			var push_direction = -collision.get_normal()
+			var push_strength = PUSH_FORCE
+			
+			# Apply impulse to push the object
+			collider.apply_central_impulse(push_direction * push_strength * delta * 60)
+			
+	ball_throw()
+	
+func ball_throw():
+	if Input.is_action_pressed("throw_ball") && can_throw:
+		var ball_instantiate = Ball.instantiate()
+		ball_instantiate.position = $Neck/Camera3D/Ballpos.global_position
+		get_tree().current_scene.add_child(ball_instantiate)
+		
+		can_throw = false
+		$ThrowTimer.start()
+		
+		var force = -10
+		var up_direction = 3.5
+		
+		var playerRotation = $Neck.global_transform.basis.z.normalized()
+		
+		ball_instantiate.apply_central_impulse(playerRotation * force + Vector3(0, up_direction, 0))
+
+
+func _on_throw_timer_timeout():
+	can_throw = true

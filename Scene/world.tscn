@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://belflc5m35iwt"]
+[gd_scene load_steps=17 format=3 uid="uid://belflc5m35iwt"]
 
 [ext_resource type="PackedScene" uid="uid://n7uum1ac077m" path="res://Object/player.tscn" id="1_rvn40"]
 [ext_resource type="PackedScene" uid="uid://cbm5fq531r7i7" path="res://Model/tavern.glb" id="2_f6mgl"]
@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://c81yncw3k31kc" path="res://Model/CliffProps/cliffProps3.glb" id="5_upbb6"]
 [ext_resource type="PackedScene" uid="uid://dbmmw80j8qjyv" path="res://Model/CliffProps/cliffProps4.glb" id="6_jerxb"]
 [ext_resource type="PackedScene" uid="uid://cg4qaddfcs7v2" path="res://Model/CliffProps/cliffProps5.glb" id="7_37hl4"]
+[ext_resource type="PackedScene" uid="uid://clmn205m6v2jk" path="res://Object/hugeball.tscn" id="8_4fmal"]
+[ext_resource type="PackedScene" uid="uid://8qqijfoj084g" path="res://Object/box.tscn" id="8_owdvs"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_28ir1"]
 size = Vector3(50, 1, 50)
@@ -430,3 +432,29 @@ shape = SubResource("BoxShape3D_q0sih")
 [node name="CollisionShape3D4" type="CollisionShape3D" parent="Cliff"]
 transform = Transform3D(-0.0157771, 0, -0.999876, 0, 1, 0, 0.999876, 0, -0.0157771, 0.34726, 0, 23.0051)
 shape = SubResource("BoxShape3D_q0sih")
+
+[node name="HugeBall" parent="." instance=ExtResource("8_4fmal")]
+
+[node name="Box" parent="." instance=ExtResource("8_owdvs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.08116, 0.566958, 1.3983)
+
+[node name="Box2" parent="." instance=ExtResource("8_owdvs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.02703, 0.761644, 2.75015)
+
+[node name="Box3" parent="." instance=ExtResource("8_owdvs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.99769, 0.967235, 1.15287)
+
+[node name="Box4" parent="." instance=ExtResource("8_owdvs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.01378, 1.05359, 0.549961)
+
+[node name="Box5" parent="." instance=ExtResource("8_owdvs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.97803, 0.948886, 2.73765)
+
+[node name="Box6" parent="." instance=ExtResource("8_owdvs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.57889, 1.34244, 5.31408)
+
+[node name="Box7" parent="." instance=ExtResource("8_owdvs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.71404, 2.046, 1.70042)
+
+[node name="Box8" parent="." instance=ExtResource("8_owdvs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.25257, 3.05713, 2.36504)
