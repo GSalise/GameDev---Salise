@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://be2j8ejtocn2i"]
+
+[ext_resource type="Script" uid="uid://cjul7oqofbp15" path="res://Script/terrain_controllerlvl2.gd" id="1_pirvv"]
+
+[node name="TerrainController" type="Node3D" unique_id=758188467]
+script = ExtResource("1_pirvv")
+terrain_velocity = 10.0
+terrian_blocks_path = "res://Object/Terrain_Blocks_LVL1/"
+max_distance = 200.0

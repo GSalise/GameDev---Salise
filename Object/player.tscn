@@ -1,6 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://n7uum1ac077m"]
+[gd_scene format=3 uid="uid://n7uum1ac077m"]
 
-[ext_resource type="Script" path="res://Script/player.gd" id="1_ri5tx"]
+[ext_resource type="Script" uid="uid://bbx4si3gtvjtv" path="res://Script/player.gd" id="1_ri5tx"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3owun"]
 radius = 0.4
@@ -10,29 +10,29 @@ height = 1.8
 radius = 0.4
 height = 1.8
 
-[node name="Player" type="CharacterBody3D"]
+[node name="Player" type="CharacterBody3D" unique_id=1959996982]
 script = ExtResource("1_ri5tx")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1039247108]
 shape = SubResource("CapsuleShape3D_3owun")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=302773258]
 mesh = SubResource("CapsuleMesh_bsak8")
 
-[node name="Neck" type="Node3D" parent="."]
+[node name="Neck" type="Node3D" parent="." unique_id=46309761]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.344897, 0)
 
-[node name="Camera3D" type="Camera3D" parent="Neck"]
+[node name="Camera3D" type="Camera3D" parent="Neck" unique_id=1592807653]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.154538, 0)
 
-[node name="Ballpos" type="Marker3D" parent="Neck/Camera3D"]
+[node name="Ballpos" type="Marker3D" parent="Neck/Camera3D" unique_id=1614727751]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.154538, -1)
 
-[node name="ThrowTimer" type="Timer" parent="."]
+[node name="ThrowTimer" type="Timer" parent="." unique_id=1472460124]
 wait_time = 3.0
 one_shot = true
 
-[node name="Crosshair" type="Control" parent="."]
+[node name="Crosshair" type="Control" parent="." unique_id=817466263]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -41,7 +41,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 
-[node name="Control" type="Control" parent="Crosshair"]
+[node name="Control" type="Control" parent="Crosshair" unique_id=680013819]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -51,7 +51,7 @@ anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Line2D" type="Line2D" parent="Crosshair/Control"]
+[node name="Line2D" type="Line2D" parent="Crosshair/Control" unique_id=1763597650]
 points = PackedVector2Array(0.001, 0, 0, 0)
 width = 3.5
 begin_cap_mode = 2

@@ -12,6 +12,7 @@ var Ball = preload("res://Object/ball.tscn")
 var can_throw = true
 var sensitivity = 0.003
 @onready var camera = $Neck/Camera3D
+@onready var terrain_controller = get_parent().get_node("TerrainController")
 
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -53,6 +54,13 @@ func _physics_process(delta):
 		var collision = get_slide_collision(i)
 		var collider = collision.get_collider()
 		
+
+
+		if collider.is_in_group("Obstacle"):
+			print("HIT")
+			_restart_game()
+
+		
 		if collider is RigidBody3D:
 			var push_direction = -collision.get_normal()
 			var push_strength = PUSH_FORCE
@@ -81,3 +89,8 @@ func ball_throw():
 
 func _on_throw_timer_timeout():
 	can_throw = true
+	
+func _restart_game():
+	global_position = Vector3(0, 2, 0)
+	velocity = Vector3.ZERO
+	terrain_controller.reset_terrain()

@@ -1,0 +1,131 @@
+[gd_scene format=3 uid="uid://ds4ityqip6gip"]
+
+[ext_resource type="PackedScene" uid="uid://n7uum1ac077m" path="res://Object/player.tscn" id="1_13b51"]
+[ext_resource type="PackedScene" uid="uid://b3wqxbegy65n" path="res://Controller/terrain_controller.tscn" id="2_0ic2r"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0j2sr"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_ij1sv"]
+sky_material = SubResource("ProceduralSkyMaterial_0j2sr")
+
+[sub_resource type="Environment" id="Environment_kpoql"]
+background_mode = 2
+sky = SubResource("Sky_ij1sv")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="GDScript" id="GDScript_st7y3"]
+script/source = "extends Node3D
+class_name TerrainController
+## This builds and operates the terrain \"conveyor belt\"
+##
+## A set of randomly choosen terrain blocks is rendered to the viewport.
+## As the game played the terrian is moved in the posative Z direction.
+## When a given block passes behind this node it is removed and a new block
+## is added to the far end of the conveyor
+
+## Holds the catalog of loaded terrian block scenes
+var TerrainBlocks: Array = []
+## The set of terrian blocks which are currently rendered to viewport
+var terrain_belt: Array[MeshInstance3D] = []
+@export var terrain_velocity: float = 10.0
+## The number of blocks to keep rendered to the viewport
+@export var num_terrain_blocks = 4
+## Path to directory holding the terrain block scenes
+@export_dir var terrian_blocks_path = \"res://Object/Terrain_Blocks_LVL1/\"
+
+@export var max_distance: float = 200.0
+var distance_travelled: float = 0
+var game_done := false;
+
+
+func _ready() -> void:
+	_load_terrain_scenes(terrian_blocks_path)
+	_init_blocks(num_terrain_blocks)
+
+
+func _physics_process(delta: float) -> void:
+	if game_done:
+		return
+		
+	distance_travelled += terrain_velocity * delta
+	_progress_terrain(delta)
+	
+	if distance_travelled >= max_distance:
+		end_game()
+
+
+func _init_blocks(number_of_blocks: int) -> void:
+	for block_index in number_of_blocks:
+		var block = TerrainBlocks.pick_random().instantiate()
+		if block_index == 0:
+			block.position.z = block.mesh.size.y/2
+		else:
+			_append_to_far_edge(terrain_belt[block_index-1], block)
+		add_child(block)
+		terrain_belt.append(block)
+
+
+func _progress_terrain(delta: float) -> void:
+	for block in terrain_belt:
+		block.position.z += terrain_velocity * delta
+
+	if terrain_belt[0].position.z >= terrain_belt[0].mesh.size.y/2:
+		var last_terrain = terrain_belt[-1]
+		var first_terrain = terrain_belt.pop_front()
+
+		var block = TerrainBlocks.pick_random().instantiate()
+		_append_to_far_edge(last_terrain, block)
+		add_child(block)
+		terrain_belt.append(block)
+		first_terrain.queue_free()
+
+
+func _append_to_far_edge(target_block: MeshInstance3D, appending_block: MeshInstance3D) -> void:
+	appending_block.position.z = target_block.position.z - target_block.mesh.size.y/2 - appending_block.mesh.size.y/2
+
+
+func _load_terrain_scenes(target_path: String) -> void:
+	var dir = DirAccess.open(target_path)
+	for scene_path in dir.get_files():
+		print(\"Loading terrian block scene: \" + target_path + \"/\" + scene_path)
+		TerrainBlocks.append(load(target_path + \"/\" + scene_path))
+		
+func reset_terrain() -> void:
+	# Remove all existing blocks
+	for block in terrain_belt:
+		block.queue_free()
+	
+	distance_travelled = 0
+	terrain_belt.clear()
+	
+	# Recreate starting terrain
+	_init_blocks(num_terrain_blocks)
+	
+func end_game():
+	game_done = true
+	print(\"FINISHED!\")
+	terrain_velocity = 0
+"
+
+[node name="EndlessWorld2" type="Node3D" unique_id=1989441081]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1919127951]
+environment = SubResource("Environment_kpoql")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=635232778]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+directional_shadow_max_distance = 1.0
+
+[node name="Player" parent="." unique_id=1959996982 instance=ExtResource("1_13b51")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, 0)
+
+[node name="TerrainController" parent="." unique_id=758188467 instance=ExtResource("2_0ic2r")]
+script = SubResource("GDScript_st7y3")
+terrain_velocity = null
+num_terrain_blocks = null
+terrian_blocks_path = null
+max_distance = null

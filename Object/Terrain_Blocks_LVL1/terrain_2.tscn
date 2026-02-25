@@ -1,0 +1,71 @@
+[gd_scene format=3 uid="uid://4k2srovox6aa"]
+
+[ext_resource type="Shader" uid="uid://d3gbjwxudbqh2" path="res://Shader/terrain_0.gdshader" id="1_04wa3"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_452af"]
+size = Vector2(15, 20)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_k25je"]
+render_priority = 0
+shader = ExtResource("1_04wa3")
+shader_parameter/speed = 1.0
+shader_parameter/saturation = 1.0
+shader_parameter/brightness = 1.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xwbrc"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_uivwb"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vq0x3"]
+albedo_color = Color(0.99215686, 0, 0.2, 1)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_c8xra"]
+data = PackedVector3Array(7.5, 0, 10, -7.5, 0, 10, 7.5, 0, -10, -7.5, 0, 10, -7.5, 0, -10, 7.5, 0, -10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_04wa3"]
+size = Vector3(30, 1, 30)
+
+[node name="Terrain_0" type="MeshInstance3D" unique_id=756591872]
+mesh = SubResource("PlaneMesh_452af")
+surface_material_override/0 = SubResource("ShaderMaterial_k25je")
+
+[node name="Obstacle_0T2" type="StaticBody3D" parent="." unique_id=646545961 groups=["Obstacle"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7303352, 0.5, -2.5677743)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacle_0T2" unique_id=2062596943]
+shape = SubResource("BoxShape3D_xwbrc")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Obstacle_0T2" unique_id=218958995]
+mesh = SubResource("BoxMesh_uivwb")
+surface_material_override/0 = SubResource("StandardMaterial3D_vq0x3")
+
+[node name="Obstacle_1T2" type="StaticBody3D" parent="." unique_id=880739429 groups=["Obstacle"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.56959796, 0.5, 0.79828644)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacle_1T2" unique_id=1350928814]
+shape = SubResource("BoxShape3D_xwbrc")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Obstacle_1T2" unique_id=105193366]
+mesh = SubResource("BoxMesh_uivwb")
+surface_material_override/0 = SubResource("StandardMaterial3D_vq0x3")
+
+[node name="Obstacle_2T2" type="StaticBody3D" parent="." unique_id=1880633731 groups=["Obstacle"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.701251, 0.5, 4.453159)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacle_2T2" unique_id=797589059]
+shape = SubResource("BoxShape3D_xwbrc")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Obstacle_2T2" unique_id=50423361]
+mesh = SubResource("BoxMesh_uivwb")
+surface_material_override/0 = SubResource("StandardMaterial3D_vq0x3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1615178373]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=561584023]
+shape = SubResource("ConcavePolygonShape3D_c8xra")
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="." unique_id=1845549021 groups=["Obstacle"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2" unique_id=1205326003]
+shape = SubResource("BoxShape3D_04wa3")
