@@ -1,6 +1,0 @@
-[gd_scene format=3 uid="uid://bcrg0yo2ttqva"]
-
-[ext_resource type="Script" uid="uid://byd3vgg2vtp5c" path="res://Script/terrain_controller.gd" id="1_ycoo4"]
-
-[node name="TerrainController" type="Node3D" unique_id=758188467]
-script = ExtResource("1_ycoo4")

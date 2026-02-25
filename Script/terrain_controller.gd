@@ -1,5 +1,5 @@
 extends Node3D
-class_name TerrainControler3
+class_name TerrainControler1
 ## This builds and operates the terrain "conveyor belt"
 ##
 ## A set of randomly choosen terrain blocks is rendered to the viewport.
@@ -15,7 +15,7 @@ var terrain_belt: Array[MeshInstance3D] = []
 ## The number of blocks to keep rendered to the viewport
 @export var num_terrain_blocks = 4
 ## Path to directory holding the terrain block scenes
-@export_dir var terrian_blocks_path = "res://Object/Terrain_Blocks_LVL1/"
+@export_dir var terrian_blocks_path = "res://Object/Terrain_Blocks_LVL2/"
 
 @export var max_distance: float = 200.0
 var distance_travelled: float = 0
@@ -89,3 +89,5 @@ func end_game():
 	game_done = true
 	print("FINISHED!")
 	terrain_velocity = 0
+	await get_tree().create_timer(1.0).timeout  # optional delay
+	get_tree().change_scene_to_file("res://Scene/world.tscn");

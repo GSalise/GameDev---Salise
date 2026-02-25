@@ -15,7 +15,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="Salise - Week 1"
-run/main_scene="uid://ds4ityqip6gip"
+run/main_scene="uid://belflc5m35iwt"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 

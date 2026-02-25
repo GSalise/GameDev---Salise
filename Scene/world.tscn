@@ -9,6 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://cg4qaddfcs7v2" path="res://Model/CliffProps/cliffProps5.glb" id="7_37hl4"]
 [ext_resource type="PackedScene" uid="uid://clmn205m6v2jk" path="res://Object/hugeball.tscn" id="8_4fmal"]
 [ext_resource type="PackedScene" uid="uid://8qqijfoj084g" path="res://Object/box.tscn" id="8_owdvs"]
+[ext_resource type="Shader" uid="uid://d3gbjwxudbqh2" path="res://Shader/terrain_0.gdshader" id="10_y56vo"]
+[ext_resource type="PackedScene" uid="uid://cn5hs4yax6mx5" path="res://Controller/world_controller.tscn" id="11_6a5p4"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_28ir1"]
 size = Vector3(50, 1, 50)
@@ -31,6 +33,19 @@ data = PackedVector3Array(-0.4848, 0.055, 0.025, -0.4848, -0.065, 0.025, -0.5036
 [sub_resource type="BoxShape3D" id="BoxShape3D_q0sih"]
 size = Vector3(1, 6, 50)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_y56vo"]
+size = Vector3(1, 5, 5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_6a5p4"]
+size = Vector3(1, 5, 5)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nka0b"]
+render_priority = 0
+shader = ExtResource("10_y56vo")
+shader_parameter/speed = 1.0
+shader_parameter/saturation = 1.0
+shader_parameter/brightness = 1.0
+
 [node name="World" type="Node3D" unique_id=1472924245]
 
 [node name="Floor" type="StaticBody3D" parent="." unique_id=329383140]
@@ -41,7 +56,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, -17.646938)
 shape = SubResource("BoxShape3D_28ir1")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Floor" unique_id=1599575671]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.8774023, -1.0070963, -17.480627)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.08250427, -0.09053147, -17.480627)
 material_override = SubResource("StandardMaterial3D_i2ruf")
 mesh = SubResource("QuadMesh_yfvoj")
 
@@ -436,6 +451,7 @@ transform = Transform3D(-0.0157771, 0, -0.999876, 0, 1, 0, 0.999876, 0, -0.01577
 shape = SubResource("BoxShape3D_q0sih")
 
 [node name="HugeBall" parent="." unique_id=405481943 instance=ExtResource("8_4fmal")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.813035, 3.8929136, -10.836519)
 
 [node name="Box" parent="." unique_id=538091465 instance=ExtResource("8_owdvs")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.08116, 0.566958, 1.3983)
@@ -460,3 +476,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.71404, 2.046, 1.70042)
 
 [node name="Box8" parent="." unique_id=1748880283 instance=ExtResource("8_owdvs")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.25257, 3.05713, 2.36504)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=139859560 groups=["Portal"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.8069, 2.4116302, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1762777366]
+shape = SubResource("BoxShape3D_y56vo")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=702762798]
+mesh = SubResource("BoxMesh_6a5p4")
+surface_material_override/0 = SubResource("ShaderMaterial_nka0b")
+
+[node name="WorldController" parent="." unique_id=1045063849 instance=ExtResource("11_6a5p4")]

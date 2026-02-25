@@ -59,6 +59,10 @@ func _physics_process(delta):
 		if collider.is_in_group("Obstacle"):
 			print("HIT")
 			_restart_game()
+			
+		if collider.is_in_group("Portal"):
+			print("TELEPORT!")
+			get_tree().change_scene_to_file("res://Scene/endless_world_lvl1.tscn")
 
 		
 		if collider is RigidBody3D:
