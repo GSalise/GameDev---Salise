@@ -11,7 +11,7 @@ class_name TerrainControler1
 var TerrainBlocks: Array = []
 ## The set of terrian blocks which are currently rendered to viewport
 var terrain_belt: Array[MeshInstance3D] = []
-@export var terrain_velocity: float = 10.0
+@export var terrain_velocity: float = 8.0
 ## The number of blocks to keep rendered to the viewport
 @export var num_terrain_blocks = 4
 ## Path to directory holding the terrain block scenes
@@ -23,6 +23,7 @@ var game_done := false;
 
 
 func _ready() -> void:
+	AudioController.play_runner_music()
 	_load_terrain_scenes(terrian_blocks_path)
 	_init_blocks(num_terrain_blocks)
 

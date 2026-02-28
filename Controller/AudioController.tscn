@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://d1mgb5s553adi"]
+
+[ext_resource type="AudioStream" uid="uid://cxgpo4674gkr7" path="res://Audio/Ambiance.wav" id="1_mtyix"]
+[ext_resource type="Script" uid="uid://ce243tvgnla7k" path="res://Script/audio_controller.gd" id="1_tb1un"]
+[ext_resource type="AudioStream" uid="uid://f0303kcaecll" path="res://Audio/GameSFX/Music/Nes Style/Retro Music Loop - PV8 - NES Style 01.wav" id="3_vdbax"]
+[ext_resource type="AudioStream" uid="uid://c764pvfs0obhq" path="res://Audio/PeriTune-2020_9-Battle_Tracks/Loop/PerituneMaterial_Fight2_loop.ogg" id="4_d8283"]
+
+[node name="AudioController" type="Node" unique_id=1667696319]
+script = ExtResource("1_tb1un")
+
+[node name="BGMWorld" type="AudioStreamPlayer" parent="." unique_id=642040777]
+stream = ExtResource("1_mtyix")
+
+[node name="BGMRunner" type="AudioStreamPlayer" parent="." unique_id=1835403263]
+stream = ExtResource("3_vdbax")
+
+[node name="BGMCombat" type="AudioStreamPlayer" parent="." unique_id=1876255162]
+stream = ExtResource("4_d8283")

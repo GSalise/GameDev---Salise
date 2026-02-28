@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://iwo6bnmnwjvh"]
+
+[sub_resource type="GDScript" id="GDScript_wmttc"]
+script/source = "extends Node3D
+
+func _ready() -> void:
+	pass
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
+[node name="CombatWorldController" type="Node3D" unique_id=1211831743]
+script = SubResource("GDScript_wmttc")

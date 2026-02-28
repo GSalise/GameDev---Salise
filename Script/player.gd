@@ -5,23 +5,34 @@ const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 const PUSH_FORCE = 5.0
 
+@export var player_health: int = 100;
+
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var Ball = preload("res://Object/ball.tscn")
+var health: int
 
 var can_throw = true
 var sensitivity = 0.003
 @onready var camera = $Neck/Camera3D
 @onready var terrain_controller = get_parent().get_node("TerrainController")
+@onready var health_bar = $UI/HealthBar/ProgressBar
 
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	health = player_health
+	health_bar.max_value = player_health
+	health_bar.value = health
+	
 
 func _unhandled_input(event):
 	if event is InputEventMouseMotion:
 		rotate_y(-event.relative.x * sensitivity)
 		camera.rotate_x(-event.relative.y * sensitivity)
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-60), deg_to_rad(70))
+		
+	if event.is_action_pressed("ui_escape"):
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 func _process(delta):
 	if Input.is_action_just_pressed("escape"):
@@ -63,6 +74,10 @@ func _physics_process(delta):
 		if collider.is_in_group("Portal"):
 			print("TELEPORT!")
 			get_tree().change_scene_to_file("res://Scene/endless_world_lvl1.tscn")
+			
+		if collider.is_in_group("Portal2"):
+			print("TELEPORT!")
+			get_tree().change_scene_to_file("res://Scene/combat_world.tscn")
 
 		
 		if collider is RigidBody3D:
@@ -89,7 +104,6 @@ func ball_throw():
 		var playerRotation = $Neck.global_transform.basis.z.normalized()
 		
 		ball_instantiate.apply_central_impulse(playerRotation * force + Vector3(0, up_direction, 0))
-
 
 func _on_throw_timer_timeout():
 	can_throw = true

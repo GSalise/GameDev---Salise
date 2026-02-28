@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://bep3u2v8qx6ac"]
+
+[ext_resource type="Script" uid="uid://l8j3ug3hp6s" path="res://Script/States/StateMachine.gd" id="2_gpg38"]
+[ext_resource type="Script" uid="uid://uhnivdflkaxj" path="res://Script/States/EnemyIdle.gd" id="3_mvfex"]
+[ext_resource type="Script" uid="uid://cqahmkwrd6a2l" path="res://Script/States/EnemyChase.gd" id="3_wtueg"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hx1xf"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qbrgh"]
+albedo_color = Color(0.96463805, 0.15327245, 1.92523e-07, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_gpg38"]
+material = SubResource("StandardMaterial3D_qbrgh")
+
+[node name="Enemy" type="CharacterBody3D" unique_id=1283944123 groups=["enemies"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=13788144]
+shape = SubResource("CapsuleShape3D_hx1xf")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=2093253789]
+mesh = SubResource("CapsuleMesh_gpg38")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=160970650]
+
+[node name="StateMachine" type="Node" parent="." unique_id=220010759 node_paths=PackedStringArray("initial_state")]
+script = ExtResource("2_gpg38")
+initial_state = NodePath("chase")
+
+[node name="idle" type="Node" parent="StateMachine" unique_id=1153477922 node_paths=PackedStringArray("enemy")]
+script = ExtResource("3_mvfex")
+enemy = NodePath("../..")
+metadata/_custom_type_script = "uid://uhnivdflkaxj"
+
+[node name="chase" type="Node" parent="StateMachine" unique_id=1083485414 node_paths=PackedStringArray("enemy")]
+script = ExtResource("3_wtueg")
+enemy = NodePath("../..")
+metadata/_custom_type_script = "uid://cqahmkwrd6a2l"

@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://cyf2ew0r4ljr7"]
+
+[ext_resource type="Texture2D" uid="uid://b2qenks32xirv" path="res://Texture/metal_plate_4k/textures/metal_plate_diff_4k.png" id="1_nnxwc"]
+[ext_resource type="Texture2D" uid="uid://wng6cgcdajbq" path="res://Texture/metal_plate_4k/textures/metal_plate_ao_4k.png" id="2_ibhui"]
+[ext_resource type="Texture2D" uid="uid://klb40gdafrd2" path="res://Texture/metal_plate_4k/textures/metal_plate_metal_4k.png" id="3_i07wl"]
+[ext_resource type="Texture2D" uid="uid://dnp4cnqcbhwi0" path="res://Texture/metal_plate_4k/textures/metal_plate_nor_gl_4k.png" id="4_8p1xj"]
+[ext_resource type="Texture2D" uid="uid://blaxj2jh2v1u1" path="res://Texture/metal_plate_4k/textures/metal_plate_rough_4k.png" id="5_csgdt"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mf40n"]
+size = Vector3(5, 5, 5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_shra8"]
+size = Vector3(5, 5, 5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lhunq"]
+albedo_texture = ExtResource("1_nnxwc")
+metallic = 1.0
+metallic_texture = ExtResource("3_i07wl")
+roughness_texture = ExtResource("5_csgdt")
+normal_enabled = true
+normal_texture = ExtResource("4_8p1xj")
+ao_enabled = true
+ao_texture = ExtResource("2_ibhui")
+uv1_scale = Vector3(5, 5, 5)
+
+[node name="Wall5" type="StaticBody3D" unique_id=1933401783]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=689506381]
+shape = SubResource("BoxShape3D_mf40n")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1772598054]
+mesh = SubResource("BoxMesh_shra8")
+surface_material_override/0 = SubResource("StandardMaterial3D_lhunq")

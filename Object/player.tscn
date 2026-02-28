@@ -10,7 +10,31 @@ height = 1.8
 radius = 0.4
 height = 1.8
 
-[node name="Player" type="CharacterBody3D" unique_id=1959996982]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b7k48"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(1, 1, 1, 0.5137255)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+corner_detail = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kwdud"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(0.53333336, 0, 0.023529412, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+corner_detail = 6
+
+[node name="Player" type="CharacterBody3D" unique_id=1959996982 groups=["player"]]
 script = ExtResource("1_ri5tx")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1039247108]
@@ -32,7 +56,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.154538, -1)
 wait_time = 3.0
 one_shot = true
 
-[node name="Crosshair" type="Control" parent="." unique_id=817466263]
+[node name="UI" type="Control" parent="." unique_id=817466263]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -41,7 +65,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 
-[node name="Control" type="Control" parent="Crosshair" unique_id=680013819]
+[node name="Crosshair" type="Control" parent="UI" unique_id=680013819]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -51,10 +75,25 @@ anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Line2D" type="Line2D" parent="Crosshair/Control" unique_id=1763597650]
+[node name="Line2D" type="Line2D" parent="UI/Crosshair" unique_id=1763597650]
 points = PackedVector2Array(0.001, 0, 0, 0)
 width = 3.5
 begin_cap_mode = 2
 end_cap_mode = 2
+
+[node name="HealthBar" type="Control" parent="UI" unique_id=1299355343]
+anchors_preset = 0
+offset_left = 13.0
+offset_top = 12.0
+offset_right = 473.0
+offset_bottom = 57.0
+
+[node name="ProgressBar" type="ProgressBar" parent="UI/HealthBar" unique_id=1090458714]
+layout_mode = 0
+offset_right = 460.0
+offset_bottom = 45.0
+theme_override_styles/background = SubResource("StyleBoxFlat_b7k48")
+theme_override_styles/fill = SubResource("StyleBoxFlat_kwdud")
+value = 50.0
 
 [connection signal="timeout" from="ThrowTimer" to="." method="_on_throw_timer_timeout"]
