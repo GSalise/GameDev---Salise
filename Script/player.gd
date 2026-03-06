@@ -32,7 +32,10 @@ func _unhandled_input(event):
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-60), deg_to_rad(70))
 		
 	if event.is_action_pressed("ui_escape"):
-		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
+			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		else:
+			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func _process(delta):
 	if Input.is_action_just_pressed("escape"):
@@ -73,11 +76,11 @@ func _physics_process(delta):
 			
 		if collider.is_in_group("Portal"):
 			print("TELEPORT!")
-			get_tree().change_scene_to_file("res://Scene/endless_world_lvl1.tscn")
+			get_tree().call_deferred("change_scene_to_file", "res://Scene/endless_world_lvl1.tscn")
 			
 		if collider.is_in_group("Portal2"):
 			print("TELEPORT!")
-			get_tree().change_scene_to_file("res://Scene/combat_world.tscn")
+			get_tree().call_deferred("change_scene_to_file", "res://Scene/combat_world.tscn")
 
 		
 		if collider is RigidBody3D:
