@@ -19,6 +19,13 @@ Video Link: https://youtu.be/ZeLXFFwa1LY
 
 ### Week 3 - Acts 1 and 2
 Added UI, Audio, and AI
+Also added a bit of texture and depth into the textures
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/c2524de6-fdfc-4367-ac4a-8fe3f3dd04ee" />
 
 Video Link: https://youtu.be/la4hcbbvQxw
+
+### Week 4 - Act 1
+Basic 3D - Already implemented
+<img width="1920" height="1080" alt="Screenshot 2026-03-06 152046" src="https://github.com/user-attachments/assets/361a517a-7a04-4681-bf53-0fdb5c73246a" />
+<img width="1920" height="1080" alt="Screenshot 2026-03-06 152159" src="https://github.com/user-attachments/assets/ef9448ad-6880-4c6b-b621-366c083fee56" />
+<img width="1920" height="1080" alt="Screenshot 2026-03-06 152210" src="https://github.com/user-attachments/assets/0504cee3-5b4a-430d-ba4b-c157d5c5f130" />
