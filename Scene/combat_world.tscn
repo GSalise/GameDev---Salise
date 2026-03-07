@@ -150,3 +150,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.2107286, 0.9, -13.566)
 
 [node name="CombatWorldController" parent="." unique_id=1676283075 instance=ExtResource("10_lgqju")]
 script = ExtResource("11_vch7c")
+
+[node name="GameTimer" type="Timer" parent="CombatWorldController" unique_id=1596695949]
+wait_time = 20.0

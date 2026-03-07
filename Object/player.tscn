@@ -1,6 +1,9 @@
 [gd_scene format=3 uid="uid://n7uum1ac077m"]
 
-[ext_resource type="Script" uid="uid://bbx4si3gtvjtv" path="res://Script/player.gd" id="1_ri5tx"]
+[ext_resource type="Script" uid="uid://b6qyaemlsjsck" path="res://addons/virtual_joystick_plus/virtual_joystick_plus.gd" id="1_a1t8t"]
+[ext_resource type="Script" uid="uid://bbx4si3gtvjtv" path="res://Script/player.gd" id="1_b5wsg"]
+[ext_resource type="Texture2D" uid="uid://c3efi0dgn8sav" path="res://addons/virtual_joystick_plus/resources/textures/joystick_texture_5.png" id="2_b5wsg"]
+[ext_resource type="Texture2D" uid="uid://cr48ty34yk3oh" path="res://addons/virtual_joystick_plus/resources/textures/stick_texture_5.png" id="3_uowl7"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3owun"]
 radius = 0.4
@@ -35,7 +38,7 @@ corner_radius_bottom_left = 6
 corner_detail = 6
 
 [node name="Player" type="CharacterBody3D" unique_id=1959996982 groups=["player"]]
-script = ExtResource("1_ri5tx")
+script = ExtResource("1_b5wsg")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1039247108]
 shape = SubResource("CapsuleShape3D_3owun")
@@ -95,5 +98,43 @@ offset_bottom = 45.0
 theme_override_styles/background = SubResource("StyleBoxFlat_b7k48")
 theme_override_styles/fill = SubResource("StyleBoxFlat_kwdud")
 value = 50.0
+
+[node name="Look" type="CanvasLayer" parent="UI" unique_id=563144553]
+
+[node name="LookJoyStick" type="Control" parent="UI/Look" unique_id=1411545194]
+custom_minimum_size = Vector2(300, 300)
+layout_mode = 3
+anchor_left = 0.74
+anchor_top = 0.54300004
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 0.52001953
+offset_top = 0.13598633
+offset_right = 1.0
+offset_bottom = 4.0
+pivot_offset = Vector2(150, 150)
+script = ExtResource("1_a1t8t")
+only_mobile = true
+joystick_texture = ExtResource("2_b5wsg")
+stick_texture = ExtResource("3_uowl7")
+metadata/_custom_type_script = "uid://b6qyaemlsjsck"
+
+[node name="Move" type="CanvasLayer" parent="UI" unique_id=598035622]
+
+[node name="MovementJoyStick" type="Control" parent="UI/Move" unique_id=264286411]
+custom_minimum_size = Vector2(300, 300)
+layout_mode = 3
+anchor_top = 0.531
+anchor_right = 0.266
+anchor_bottom = 0.994
+offset_top = 7.9119873
+offset_right = -6.432007
+offset_bottom = 7.8880005
+pivot_offset = Vector2(150, 150)
+script = ExtResource("1_a1t8t")
+only_mobile = true
+joystick_texture = ExtResource("2_b5wsg")
+stick_texture = ExtResource("3_uowl7")
+metadata/_custom_type_script = "uid://b6qyaemlsjsck"
 
 [connection signal="timeout" from="ThrowTimer" to="." method="_on_throw_timer_timeout"]

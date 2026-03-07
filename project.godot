@@ -17,11 +17,15 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 config/name="Salise - Week 1"
 run/main_scene="uid://belflc5m35iwt"
 config/features=PackedStringArray("4.6", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="uid://cqxfejlmod0bq"
 
 [autoload]
 
 AudioController="*uid://d1mgb5s553adi"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/virtual_joystick_plus/plugin.cfg")
 
 [gui]
 
@@ -73,6 +77,7 @@ ui_escape={
 [rendering]
 
 textures/canvas_textures/default_texture_filter=2
+textures/vram_compression/import_etc2_astc=true
 textures/default_filters/use_nearest_mipmap_filter=true
 textures/default_filters/anisotropic_filtering_level=4
 textures/default_filters/texture_mipmap_bias=-0.5
