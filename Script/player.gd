@@ -19,15 +19,19 @@ var mouse_sensitivity = 0.003
 @onready var lookjoystick = get_node_or_null("UI/Look/LookJoyStick")
 
 func _ready():
+	if not is_multiplayer_authority():
+		camera.current = false
+		return
+
 	# Only capture mouse on desktop
 	if not OS.has_feature("mobile"):
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	
+
 	health = player_health
 	health_bar.max_value = player_health
 	health_bar.value = health
-	
-	# Make sure camera is active
+
+	# Only the local player activates the camera
 	if camera:
 		camera.make_current()
 	
@@ -37,7 +41,12 @@ func _ready():
 	if lookjoystick:
 		print("Look joystick active: ", lookjoystick.active)
 
+func _enter_tree() -> void:
+	set_multiplayer_authority(name.to_int())
+
 func _unhandled_input(event):
+	if !is_multiplayer_authority(): return
+
 	# Mouse look (desktop only)
 	if event is InputEventMouseMotion and not OS.has_feature("mobile"):
 		rotate_y(-event.relative.x * mouse_sensitivity)
@@ -54,6 +63,7 @@ func _process(delta):
 	if Input.is_action_just_pressed("escape"):
 		get_tree().quit()
 	
+	if !is_multiplayer_authority(): return
 	# Handle look joystick (camera rotation)
 	if lookjoystick and lookjoystick.active:
 		var look_input = lookjoystick.get_value()
@@ -70,6 +80,8 @@ func _process(delta):
 
 func _physics_process(delta):
 	# Add the gravity.
+	if !is_multiplayer_authority(): return
+	
 	if not is_on_floor():
 		velocity.y -= gravity * delta
 	
@@ -129,6 +141,8 @@ func _physics_process(delta):
 		ball_throw()
 
 func ball_throw():
+	if !is_multiplayer_authority(): return
+
 	# IMPORTANT: Make sure "throw_ball" is mapped to a KEYBOARD key, NOT mouse button
 	if Input.is_action_just_pressed("throw_ball") and can_throw:
 		var ball_instantiate = Ball.instantiate()

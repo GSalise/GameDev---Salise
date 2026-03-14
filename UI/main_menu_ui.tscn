@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://lych350vd0l8"]
+
+[ext_resource type="Script" uid="uid://cmtj3jp23r2pb" path="res://Script/main_menu_ui.gd" id="1_b0hjo"]
+
+[node name="MainMenuUI" type="Control" unique_id=756575511]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_b0hjo")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=236782135]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -33.0
+offset_bottom = 33.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_group_ = true
+
+[node name="Server" type="Button" parent="VBoxContainer" unique_id=1615589281]
+layout_mode = 2
+text = "SERVER"
+
+[node name="Client" type="Button" parent="VBoxContainer" unique_id=1524762861]
+layout_mode = 2
+text = "CLIENT"
+
+[node name="Title" type="Label" parent="." unique_id=2043507563]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.164
+offset_bottom = -0.27200317
+grow_horizontal = 2
+text = "DUWA NI GEORGE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="VBoxContainer/Server" to="." method="_on_server_pressed"]
+[connection signal="pressed" from="VBoxContainer/Client" to="." method="_on_client_pressed"]

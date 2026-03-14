@@ -12,6 +12,7 @@
 [ext_resource type="Shader" uid="uid://d3gbjwxudbqh2" path="res://Shader/terrain_0.gdshader" id="10_y56vo"]
 [ext_resource type="PackedScene" uid="uid://cn5hs4yax6mx5" path="res://Controller/world_controller.tscn" id="11_6a5p4"]
 [ext_resource type="Script" uid="uid://ce7isvtnooj5j" path="res://Controller/world_controller.gd" id="12_nka0b"]
+[ext_resource type="Script" uid="uid://c7j11a1fs0ghv" path="res://Script/multiplayer_spawner.gd" id="13_0gfnl"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_28ir1"]
 size = Vector3(50, 1, 50)
@@ -513,3 +514,9 @@ shape = SubResource("BoxShape3D_nka0b")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D2" unique_id=1564813151]
 mesh = SubResource("BoxMesh_0gfnl")
 surface_material_override/0 = SubResource("ShaderMaterial_kufhj")
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="." unique_id=141520022]
+_spawnable_scenes = PackedStringArray("uid://n7uum1ac077m")
+spawn_path = NodePath("..")
+script = ExtResource("13_0gfnl")
+network_player = ExtResource("1_rvn40")

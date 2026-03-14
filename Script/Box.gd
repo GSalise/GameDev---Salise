@@ -11,5 +11,5 @@ func _process(delta):
 	pass
 
 
-func Box_hit(source):
+func Box_hit(source): 
 	apply_central_force((global_transform.origin - source).normalized() * force)

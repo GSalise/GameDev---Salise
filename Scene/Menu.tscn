@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://c8ri6k5ixn45c"]
+
+[ext_resource type="PackedScene" uid="uid://lych350vd0l8" path="res://UI/main_menu_ui.tscn" id="1_dvvdh"]
+
+[node name="Menu" type="Node2D" unique_id=1167121065]
+
+[node name="MainMenuUI" parent="." unique_id=756575511 instance=ExtResource("1_dvvdh")]
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 1
+metadata/_edit_use_anchors_ = true
