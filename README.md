@@ -29,3 +29,11 @@ Basic 3D - Already implemented
 <img width="1920" height="1080" alt="Screenshot 2026-03-06 152046" src="https://github.com/user-attachments/assets/361a517a-7a04-4681-bf53-0fdb5c73246a" />
 <img width="1920" height="1080" alt="Screenshot 2026-03-06 152159" src="https://github.com/user-attachments/assets/ef9448ad-6880-4c6b-b621-366c083fee56" />
 <img width="1920" height="1080" alt="Screenshot 2026-03-06 152210" src="https://github.com/user-attachments/assets/0504cee3-5b4a-430d-ba4b-c157d5c5f130" />
+
+### Week 4 - Act 2
+Exporting project to .exe and .apk
+<img width="1154" height="680" alt="image" src="https://github.com/user-attachments/assets/f62a3984-02a9-4227-956b-677b998257e1" />
+<img width="2048" height="921" alt="image" src="https://github.com/user-attachments/assets/d00dd6ea-ecd7-4575-9be4-628c9b905613" />
+<img width="1232" height="733" alt="image" src="https://github.com/user-attachments/assets/1be40090-4769-4cd3-bc07-a2fd2be6092e" />
+
+
